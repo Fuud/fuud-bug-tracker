@@ -1,17 +1,85 @@
 package com.blogspot.fuud.java.bugtracker;
 
-import org.apache.log4j.Logger;
-
 import java.util.Collection;
+import java.util.Set;
 
 public class Issue {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(Issue.class);
-
+    private String title;
     private IssueType type;
-    private IssueState state;
-    private Collection<Issue> blockers;
-    private Collection<Issue> clones;
+    private IssueState issueState;
+    private boolean isSuspended;
+
+    private User assigner;
+    private User reporter;
+
+    private Set<Issue> blockers;
+    private Set<Issue> clones;
+
+    private Set<Comment> comments;
+
+    public User getAssigner() {
+        return assigner;
+    }
+
+    public void setAssigner(User assigner) {
+        this.assigner = assigner;
+    }
+
+    public Set<Issue> getBlockers() {
+        return blockers;
+    }
+
+    public void setBlockers(Set<Issue> blockers) {
+        this.blockers = blockers;
+    }
+
+    public Set<Issue> getClones() {
+        return clones;
+    }
+
+    public void setClones(Set<Issue> clones) {
+        this.clones = clones;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public IssueState getIssueState() {
+        return issueState;
+    }
+
+    public void setIssueState(IssueState issueState) {
+        this.issueState = issueState;
+    }
+
+    public boolean isSuspended() {
+        return isSuspended;
+    }
+
+    public void setSuspended(boolean suspended) {
+        isSuspended = suspended;
+    }
+
+    public User getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(User reporter) {
+        this.reporter = reporter;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public IssueType getType() {
         return type;
@@ -19,29 +87,5 @@ public class Issue {
 
     public void setType(IssueType type) {
         this.type = type;
-    }
-
-    public IssueState getState() {
-        return state;
-    }
-
-    public void setState(IssueState state) {
-        this.state = state;
-    }
-
-    public Collection<Issue> getBlockers() {
-        return blockers;
-    }
-
-    public void setBlockers(Collection<Issue> blockers) {
-        this.blockers = blockers;
-    }
-
-    public Collection<Issue> getClones() {
-        return clones;
-    }
-
-    public void setClones(Collection<Issue> clones) {
-        this.clones = clones;
     }
 }

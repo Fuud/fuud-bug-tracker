@@ -1,8 +1,24 @@
 package com.blogspot.fuud.java.bugtracker;
 
-import org.apache.log4j.Logger;
+import java.util.Set;
 
 public class Project {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(Project.class);
+    private String title;
+    private Set<Issue> issues;
+
+    public Set<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(Set<Issue> issues) {
+        this.issues = issues;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

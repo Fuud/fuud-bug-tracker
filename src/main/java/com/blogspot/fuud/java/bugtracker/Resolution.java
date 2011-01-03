@@ -1,7 +1,8 @@
 package com.blogspot.fuud.java.bugtracker;
 
-public enum IssueState {
+public enum Resolution {
     UNRESOLVED,
     RESOLVED,
-    CLOSED
+    CAN_NOT_REPRODUCE,
+    DOCUMENTED
 }
