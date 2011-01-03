@@ -1,6 +1,5 @@
-package com.blogspot.fuud.java.bugtracker;
+package com.blogspot.fuud.java.bugtracker.domain;
 
-import java.util.Collection;
 import java.util.Set;
 
 public class Issue {

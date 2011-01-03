@@ -1,4 +1,4 @@
-package com.blogspot.fuud.java.bugtracker;
+package com.blogspot.fuud.java.bugtracker.domain;
 
 import java.util.Set;
 
