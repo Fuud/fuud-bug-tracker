@@ -41,6 +41,9 @@ public class Issue {
     @Cascade(CascadeType.ALL)
     private Set<Issue> clones;
 
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(CascadeType.ALL)
     private Set<Comment> comments;
 
     public Long getId() {
