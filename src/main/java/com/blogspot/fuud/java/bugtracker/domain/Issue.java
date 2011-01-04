@@ -4,8 +4,10 @@ import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Set;
 
+@Entity
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
