@@ -20,4 +20,17 @@ public class UserDao {
         User user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", loginName)).uniqueResult();
         return user != null;
     }
+
+    public User addUser(String loginName, String password){
+        final User user = new User();
+        user.setLogin(loginName);
+        user.setPassword(password);
+        baseGenericDao.save(user);
+        return user;
+    }
+
+    public boolean isCredentialsValid(String login, String password){
+        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
+        return user!=null && password.equals(user.getPassword());
+    }
 }
