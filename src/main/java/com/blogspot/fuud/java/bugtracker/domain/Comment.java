@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Comment extends User {
+public class Comment{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
