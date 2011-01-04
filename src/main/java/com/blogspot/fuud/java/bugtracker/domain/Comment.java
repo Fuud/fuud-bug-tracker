@@ -32,10 +32,6 @@ public class Comment{
         return id;
     }
 
-    private void setId(Long id) {
-        this.id = id;
-    }
-
 //    public User getAuthor() {
 //        return author;
 //    }
