@@ -1,5 +1,7 @@
 package com.blogspot.fuud.java.bugtracker.domain;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -22,6 +24,7 @@ public class Comment{
 
     @OneToMany
     @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(CascadeType.ALL)
     private Set<Comment> replies = new HashSet<Comment>();
 
 
