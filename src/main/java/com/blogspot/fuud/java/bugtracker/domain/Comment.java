@@ -19,8 +19,8 @@ public class Comment{
     @Column
     private String text;
 
-
-    //private User author;
+    @ManyToOne
+    private User author;
 
     @OneToMany
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -32,13 +32,13 @@ public class Comment{
         return id;
     }
 
-//    public User getAuthor() {
-//        return author;
-//    }
-//
-//    public void setAuthor(User author) {
-//        this.author = author;
-//    }
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     public Set<Comment> getReplies() {
         return replies;

@@ -1,16 +1,37 @@
 package com.blogspot.fuud.java.bugtracker.domain;
 
-import org.apache.log4j.Logger;
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private String login;
+
+    @Column
     private String password;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getLogin() {
         return login;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

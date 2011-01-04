@@ -1,20 +1,49 @@
 package com.blogspot.fuud.java.bugtracker.domain;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
 import java.util.Set;
 
 public class Issue {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private String title;
+
+    @Enumerated(EnumType.STRING)
     private IssueType type;
+
+    @Enumerated(EnumType.STRING)
     private IssueState issueState;
+
+    @Column
     private boolean isSuspended;
 
+    @OneToOne
     private User assigner;
+
+    @OneToOne
     private User reporter;
 
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(CascadeType.ALL)
     private Set<Issue> blockers;
+
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(CascadeType.ALL)
     private Set<Issue> clones;
 
     private Set<Comment> comments;
+
+    public Long getId() {
+        return id;
+    }
 
     public User getAssigner() {
         return assigner;
