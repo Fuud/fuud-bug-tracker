@@ -27,6 +27,9 @@
         <property name="hbm2ddl.auto">create</property>
 
         <mapping class="com.blogspot.fuud.java.bugtracker.domain.Comment"/>
+        <mapping class="com.blogspot.fuud.java.bugtracker.domain.Issue"/>
+        <mapping class="com.blogspot.fuud.java.bugtracker.domain.Project"/>
+        <mapping class="com.blogspot.fuud.java.bugtracker.domain.User"/>
 
     </session-factory>
 </hibernate-configuration>
