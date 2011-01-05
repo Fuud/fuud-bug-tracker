@@ -9,6 +9,19 @@ import java.util.Set;
 
 @Entity
 public class Comment{
+    private Comment() {
+    }
+
+    public Comment(User author, String text) {
+        if (author==null){
+            throw new NullPointerException("author");
+        }
+        if (text==null){
+            throw new NullPointerException("text");
+        }
+        this.author = author;
+        this.text = text;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +46,9 @@ public class Comment{
     }
 
     public void setAuthor(User author) {
+        if (author==null){
+            throw new NullPointerException("author");
+        }
         this.author = author;
     }
 
@@ -49,6 +65,9 @@ public class Comment{
     }
 
     public void setText(String text) {
+        if (text==null){
+            throw new NullPointerException("text");
+        }
         this.text = text;
     }
 }
