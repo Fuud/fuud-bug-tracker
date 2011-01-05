@@ -1,5 +1,6 @@
 package com.blogspot.fuud.java.bugtracker.dao;
 
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
@@ -12,6 +13,10 @@ public class BaseTest {
 
     protected Session getSession() {
         return session;
+    }
+
+    protected SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 
     @Before
@@ -27,7 +32,10 @@ public class BaseTest {
 	@After
 	public  void tearDown() throws Exception {
         if (session!=null){
-            session.close();
+            try{
+                session.close();
+            }catch (HibernateException ignore){
+            }
         }
 		if ( sessionFactory != null ) {
 			sessionFactory.close();
