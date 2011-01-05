@@ -1,7 +1,5 @@
 package com.blogspot.fuud.java.bugtracker.domain;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -16,17 +14,15 @@ public class Comment{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String text;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User author;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @Cascade(CascadeType.ALL)
     private Set<Comment> replies = new HashSet<Comment>();
-
 
     public Long getId() {
         return id;
