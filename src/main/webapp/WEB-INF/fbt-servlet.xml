@@ -33,12 +33,12 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="calc.html">calc</prop>
+                <prop key="addUser.html">addUserPage</prop>
             </props>
         </property>
     </bean>
 
-    <bean id="calc" class="com.blogspot.fuud.java.bugtracker.web.SumController">
+    <bean id="addUserPage" class="com.blogspot.fuud.java.bugtracker.web.AddUserController">
         <property name="userDao" ref="userDao"/>
     </bean>
 
