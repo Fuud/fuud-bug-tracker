@@ -8,6 +8,10 @@
     <name>fuud-bug-tracker</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <java.version>1.6</java.version>
+    </properties>
+
     <repositories>
         <repository>
             <id>jboss-maven2-public-repository</id>
@@ -49,6 +53,24 @@
             <version>3.6.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
         <!-- Because this is a web app, we also have a dependency on the servlet api. -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -73,6 +95,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
