@@ -1,15 +1,10 @@
 package com.blogspot.fuud.java.bugtracker.domain;
 
 import com.blogspot.fuud.java.bugtracker.dao.BaseTest;
+import com.blogspot.fuud.java.bugtracker.dao.DefaultUserDao;
 import com.blogspot.fuud.java.bugtracker.dao.UserDao;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.util.HashSet;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertSame;
@@ -17,7 +12,7 @@ import static junit.framework.Assert.assertSame;
 public class CommentTest extends BaseTest{
     @Test
     public void store() throws Exception {
-        final UserDao userDao = new UserDao(getSessionFactory());
+        final UserDao userDao = new DefaultUserDao(getSessionFactory());
         final User user = userDao.addUser("login", "password");
         Comment comment = new Comment(user, "text");
 
