@@ -71,6 +71,12 @@
             <version>3.0.5.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
         <!-- Because this is a web app, we also have a dependency on the servlet api. -->
         <dependency>
             <groupId>javax.servlet</groupId>
