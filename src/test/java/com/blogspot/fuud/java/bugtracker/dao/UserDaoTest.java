@@ -12,7 +12,7 @@ public class UserDaoTest extends BaseTest {
         final String userName = "abracadabra";
         final String userPassword = "password666";
 
-        UserDao userDao = new UserDao(getSessionFactory());
+        UserDao userDao = new DefaultUserDao(getSessionFactory());
 
         assertFalse(userDao.isUserExists(userName));
 
@@ -30,7 +30,7 @@ public class UserDaoTest extends BaseTest {
         final String userPassword = "password666";
         final String userPassword2 = "password777";
 
-        UserDao userDao = new UserDao(getSessionFactory());
+        UserDao userDao = new DefaultUserDao(getSessionFactory());
 
         userDao.addUser(userName, userPassword);
         userDao.addUser(userName, userPassword2);
@@ -43,7 +43,7 @@ public class UserDaoTest extends BaseTest {
         final String userPassword = "password666";
         final String userPassword2 = "password777";
 
-        UserDao userDao = new UserDao(getSessionFactory());
+        UserDao userDao = new DefaultUserDao(getSessionFactory());
 
         userDao.addUser(userName, userPassword);
 
