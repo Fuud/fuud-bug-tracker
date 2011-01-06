@@ -6,7 +6,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import static junit.framework.Assert.*;
 
-public class UserDaoTest extends BaseTest {
+public class DefaultUserDaoTest extends BaseTest {
     @Test
     public void testIsUserExists() throws Exception {
         final String userName = "abracadabra";
