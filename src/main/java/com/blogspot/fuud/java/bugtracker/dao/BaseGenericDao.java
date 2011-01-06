@@ -1,34 +1,40 @@
 package com.blogspot.fuud.java.bugtracker.dao;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import java.io.Serializable;
 
 public class BaseGenericDao<T> implements GenericDao<T> {
-    private final Session session;
     private final Class<T> dataType;
+    private final HibernateTemplate hibernateTemplate;
 
-    public static <TStatic> BaseGenericDao<TStatic> create(Class<TStatic> dataType, Session session){
-        return new BaseGenericDao<TStatic>(dataType, session);
+    public static <TStatic> BaseGenericDao<TStatic> create(Class<TStatic> dataType, SessionFactory sessionFactory){
+        return new BaseGenericDao<TStatic>(dataType, sessionFactory);
     }
 
-    public BaseGenericDao(Class<T> dataType, Session session) {
-        this.session = session;
+    protected HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public BaseGenericDao(Class<T> dataType, SessionFactory sessionFactory) {
+        hibernateTemplate = new HibernateTemplate(sessionFactory);
         this.dataType = dataType;
     }
 
     @Override
     public Serializable save(T newInstance) {
-        return session.save(newInstance);
+        return hibernateTemplate.save(newInstance);
     }
 
     @Override
     public T read(Serializable id) {
-        return dataType.cast(session.get(dataType, id));
+        return hibernateTemplate.get(dataType, id);
     }
 
     @Override
     public void delete(T persistentObject) {
-        session.delete(persistentObject);
+        hibernateTemplate.delete(persistentObject);
     }
 }

@@ -1,8 +1,8 @@
 package com.blogspot.fuud.java.bugtracker.dao;
 
 import com.blogspot.fuud.java.bugtracker.domain.User;
-import org.hibernate.HibernateException;
 import org.junit.Test;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import static junit.framework.Assert.*;
 
@@ -12,7 +12,7 @@ public class UserDaoTest extends BaseTest {
         final String userName = "abracadabra";
         final String userPassword = "password666";
 
-        UserDao userDao = new UserDao(getSession());
+        UserDao userDao = new UserDao(getSessionFactory());
 
         assertFalse(userDao.isUserExists(userName));
 
@@ -24,13 +24,13 @@ public class UserDaoTest extends BaseTest {
         assertTrue(userDao.isUserExists(userName));
     }
 
-    @Test(expected = HibernateException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void shouldBeImpossibleToAddTwoUsersWithSameLogin() throws Exception {
         final String userName = "abracadabra";
         final String userPassword = "password666";
         final String userPassword2 = "password777";
 
-        UserDao userDao = new UserDao(getSession());
+        UserDao userDao = new UserDao(getSessionFactory());
 
         userDao.addUser(userName, userPassword);
         userDao.addUser(userName, userPassword2);
@@ -43,7 +43,7 @@ public class UserDaoTest extends BaseTest {
         final String userPassword = "password666";
         final String userPassword2 = "password777";
 
-        UserDao userDao = new UserDao(getSession());
+        UserDao userDao = new UserDao(getSessionFactory());
 
         userDao.addUser(userName, userPassword);
 

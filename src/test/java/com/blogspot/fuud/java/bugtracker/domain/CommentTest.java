@@ -17,7 +17,7 @@ import static junit.framework.Assert.assertSame;
 public class CommentTest extends BaseTest{
     @Test
     public void store() throws Exception {
-        final UserDao userDao = new UserDao(getSession());
+        final UserDao userDao = new UserDao(getSessionFactory());
         final User user = userDao.addUser("login", "password");
         Comment comment = new Comment(user, "text");
 
