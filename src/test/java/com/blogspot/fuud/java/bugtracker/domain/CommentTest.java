@@ -12,7 +12,9 @@ import static junit.framework.Assert.assertSame;
 public class CommentTest extends BaseTest{
     @Test
     public void store() throws Exception {
-        final UserDao userDao = new DefaultUserDao(getSessionFactory());
+        DefaultUserDao userDao = new DefaultUserDao();
+        userDao.setSessionFactory(getSessionFactory());
+
         final User user = userDao.addUser("login", "password");
         Comment comment = new Comment(user, "text");
 
