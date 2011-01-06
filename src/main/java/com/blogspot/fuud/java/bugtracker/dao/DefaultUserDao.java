@@ -2,12 +2,9 @@ package com.blogspot.fuud.java.bugtracker.dao;
 
 import com.blogspot.fuud.java.bugtracker.domain.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
 
@@ -33,12 +30,17 @@ public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
     }
 
     @Override
-    public boolean isCredentialsValid(final String login, final String password) {
-        return getHibernateTemplate().execute(
-                new HibernateCallback<Boolean>() {
-                    public Boolean doInHibernate(Session session) {
-                        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
-                        return user != null && password.equals(user.getPassword());
+    public boolean isCredentialsValid(final String username, final String password) {
+        User user = getUser(username);
+        return user != null && password.equals(user.getPassword());
+    }
+
+    @Override
+    public User getUser(final String username) {
+       return getHibernateTemplate().execute(
+                new HibernateCallback<User>() {
+                    public User doInHibernate(Session session) {
+                        return (User) session.createCriteria(User.class).add(Restrictions.eq("login", username)).uniqueResult();
                     }
                 }
         );

@@ -8,4 +8,6 @@ public interface UserDao {
     User addUser(String loginName, String password);
 
     boolean isCredentialsValid(String login, String password);
+
+    User getUser(String username);
 }

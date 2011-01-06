@@ -62,4 +62,28 @@ public class DefaultUserDaoTest extends BaseTest {
         assertFalse(userDao.isCredentialsValid(userName2, userPassword));
         assertTrue(userDao.isCredentialsValid(userName2, userPassword2));
     }
+
+    @Test
+    public void getUser() throws Exception {
+        final String userName = "abracadabra";
+        final String userName2 = "abracadabra2";
+        final String userPassword = "password666";
+        final String userPassword2 = "password777";
+
+        DefaultUserDao userDao = new DefaultUserDao();
+        userDao.setSessionFactory(getSessionFactory());
+
+        userDao.addUser(userName, userPassword);
+
+        assertEquals(userName, userDao.getUser(userName).getLogin());
+        assertEquals(userPassword, userDao.getUser(userName).getPassword());
+        assertNull(userDao.getUser(userName2));
+
+        userDao.addUser(userName2, userPassword2);
+
+        assertEquals(userName, userDao.getUser(userName).getLogin());
+        assertEquals(userPassword, userDao.getUser(userName).getPassword());
+        assertEquals(userName2, userDao.getUser(userName2).getLogin());
+        assertEquals(userPassword2, userDao.getUser(userName2).getPassword());
+    }
 }
