@@ -23,6 +23,12 @@
         <!--<appender-ref ref="SocketAppender" />-->
     </logger>
 
+    <logger name="org.springframework" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="ConsoleAppender" />
+        <!--<appender-ref ref="SocketAppender" />-->
+    </logger>
+
     <root>
         <priority value="DEBUG"/>
         <appender-ref ref="ConsoleAppender" />
