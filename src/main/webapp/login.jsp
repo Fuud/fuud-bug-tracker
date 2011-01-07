@@ -6,8 +6,9 @@
 <body><h1>Please Login</h1>
 
 <form method="post" action="j_spring_security_check">
-    <p><label>Username:</label> <input type="text" name="j_username"/></p>
-    <p><label>Password:</label> <input type="password" name="j_password"/></p>
+    <label>Username:<input type="text" name="j_username"/></label><br>
+    <label>Password:<input type="password" name="j_password"/></label><br>
+    <label> <input type='checkbox' name='_spring_security_remember_me'/>Remember me on this computer. </label><br>
     <input type="submit" value="Login"/>
 </form>
 </body>
