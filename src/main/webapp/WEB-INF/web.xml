@@ -9,19 +9,23 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/fbt-servlet.xml
-            /WEB-INF/applicationContext-security.xml
+            /WEB-INF/spring-beans.xml
+            /WEB-INF/spring-security.xml
         </param-value>
     </context-param>
 
     <servlet>
-        <servlet-name>fbt</servlet-name>
+        <servlet-name>SpringServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-beans.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>fbt</servlet-name>
+        <servlet-name>SpringServlet</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
