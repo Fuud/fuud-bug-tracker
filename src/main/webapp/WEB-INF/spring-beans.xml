@@ -49,4 +49,6 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
+    <bean id="menu" class="net.sf.navigator.menu.MenuLoader"/>
+
 </beans>

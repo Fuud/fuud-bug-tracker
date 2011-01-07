@@ -1,3 +1,4 @@
+<%@ taglib prefix="menu" uri="http://struts-menu.sf.net/tag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -5,12 +6,16 @@
 </head>
 
 <body>
+<menu:useMenuDisplayer name="TabbedMenuDisplayer" >
+    <menu:displayMenu name="AdminMenu"/>
+    <menu:displayMenu name="Logout"/>
+</menu:useMenuDisplayer>
 
 <h1>Create new user</h1>
 <%
-    String message = (String)pageContext.findAttribute("message");
-    if (message!=null && !message.trim().isEmpty()){
-        out.println(message+"<br>");
+    String message = (String) pageContext.findAttribute("message");
+    if (message != null && !message.trim().isEmpty()) {
+        out.println(message + "<br>");
     }
 %>
 

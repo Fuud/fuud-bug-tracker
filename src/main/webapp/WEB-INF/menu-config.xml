@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="SimpleMenuDisplayer" type="net.sf.navigator.displayer.SimpleMenuDisplayer"/>
+        <Displayer name="DropDownMenuDisplayer" type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+        <Displayer name="TabbedMenuDisplayer" type="net.sf.navigator.displayer.TabbedMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120">
+            <Item name="AddUser" title="menu.admin.users" page="/addUser.html"/>
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/j_spring_security_logout" roles="ROLE_ADMIN,ROLE_USER"/>
+    </Menus>
+</MenuConfig>
