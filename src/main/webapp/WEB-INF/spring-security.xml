@@ -9,6 +9,9 @@
     <http auto-config="true">
         <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/addUser.html" access="IS_AUTHENTICATED_REMEMBERED"/>
+        <!--
+            ToDo:  next line was added to forbid users directly access jsp-pages. It should be replaced with something adequate.
+        -->
         <intercept-url pattern="/*.jsp" access="ROLE_FORBIDDEN"/>
 
         <form-login login-page="/login.jsp"/>
