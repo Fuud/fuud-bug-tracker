@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return Arrays.<GrantedAuthority>asList(new GrantedAuthority() {
                 @Override
                 public String getAuthority() {
-                    return "admin";
+                    return "ROLE_ADMIN";
                 }
             });
         }
