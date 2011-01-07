@@ -7,14 +7,11 @@
            http://www.springframework.org/schema/security/spring-security-3.0.4.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/addUser.html" access="IS_AUTHENTICATED_REMEMBERED"/>
-        <!--
-            ToDo:  next line was added to forbid users directly access jsp-pages. It should be replaced with something adequate.
-        -->
-        <intercept-url pattern="/*.jsp" access="ROLE_FORBIDDEN"/>
+        <intercept-url pattern="/WEB-INF/pages/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/addUser" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/listUsers" access="ROLE_ADMIN"/>
 
-        <form-login login-page="/login.jsp"/>
+        <form-login login-page="/WEB-INF/pages/login.jsp"/>
 
         <remember-me key="myAppKey" user-service-ref="userDetailsService"/>
     </http>

@@ -2,9 +2,12 @@ package com.blogspot.fuud.java.bugtracker.dao;
 
 import com.blogspot.fuud.java.bugtracker.domain.User;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
 
@@ -44,5 +47,10 @@ public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
                     }
                 }
         );
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return getHibernateTemplate().loadAll(User.class);
     }
 }

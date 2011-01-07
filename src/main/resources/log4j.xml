@@ -29,8 +29,14 @@
         <!--<appender-ref ref="SocketAppender" />-->
     </logger>
 
+    <logger name="com.blogspot.fuud.java" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="ConsoleAppender" />
+        <!--<appender-ref ref="SocketAppender" />-->
+    </logger>
+
     <root>
-        <priority value="DEBUG"/>
+        <priority value="WARN"/>
         <appender-ref ref="ConsoleAppender" />
         <!--<appender-ref ref="SocketAppender" />-->
     </root>

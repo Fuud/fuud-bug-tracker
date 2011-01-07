@@ -7,7 +7,9 @@
     </Displayers>
     <Menus>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120">
-            <Item name="AddUser" title="menu.admin.users" page="/addUser.html"/>
+            <Item name="Add user" title="Add user" page="/addUser.do"/>
+            <Item name="List users" title="List users" page="/listUsers.do"/>
+            <Item name="Logout" title="Logout" page="/j_spring_security_logout"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/j_spring_security_logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>

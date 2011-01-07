@@ -33,14 +33,19 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="addUserPage" class="com.blogspot.fuud.java.bugtracker.web.AddUserController">
+    <bean id="addUser" class="com.blogspot.fuud.java.bugtracker.web.AddUserController">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="listUsers" class="com.blogspot.fuud.java.bugtracker.web.ListUsersController">
         <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="addUser.html">addUserPage</prop>
+                <prop key="addUser.do">addUser</prop>
+                <prop key="listUsers.do">listUsers</prop>
             </props>
         </property>
     </bean>
@@ -49,6 +54,8 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean id="menu" class="net.sf.navigator.menu.MenuLoader"/>
+    <bean id="menu" class="net.sf.navigator.menu.MenuLoader">
+        <property name="menuConfig" value="/WEB-INF/menu-config.xml"/>
+    </bean>
 
 </beans>

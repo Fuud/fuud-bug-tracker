@@ -36,7 +36,7 @@ public class AddUserController extends AbstractController {
             }
         }
 
-        ModelAndView mv = new ModelAndView("addUser.jsp");
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/addUser.jsp");
         mv.addObject("message", message);
         return mv;
     }
