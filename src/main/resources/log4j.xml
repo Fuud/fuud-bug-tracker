@@ -10,23 +10,23 @@
         </layout>
     </appender>
 
-    <appender name="SocketAppender" class="org.apache.log4j.net.SocketAppender">
-        <param name="remoteHost" value="127.0.0.1"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%-5p][%-16.16t][%32.32c] - %m%n" />
-        </layout>
-    </appender>
+    <!--<appender name="SocketAppender" class="org.apache.log4j.net.SocketAppender">-->
+        <!--<param name="remoteHost" value="127.0.0.1"/>-->
+        <!--<layout class="org.apache.log4j.PatternLayout">-->
+            <!--<param name="ConversionPattern" value="[%-5p][%-16.16t][%32.32c] - %m%n" />-->
+        <!--</layout>-->
+    <!--</appender>-->
 
     <logger name="org.hibernate" additivity="false">
         <level value="WARN"/>
         <appender-ref ref="ConsoleAppender" />
-        <appender-ref ref="SocketAppender" />
+        <!--<appender-ref ref="SocketAppender" />-->
     </logger>
 
     <root>
         <priority value="DEBUG"/>
         <appender-ref ref="ConsoleAppender" />
-        <appender-ref ref="SocketAppender" />
+        <!--<appender-ref ref="SocketAppender" />-->
     </root>
 
 </log4j:configuration>
