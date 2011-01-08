@@ -8,8 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
-public class AddUserController {
+public class UsersController {
     private UserDao userDao;
 
     @Autowired
@@ -39,5 +41,11 @@ public class AddUserController {
         }
 
         return new ModelMap("message", message);
+    }
+
+    @RequestMapping("listUsers.do")
+    public ModelMap listUsers() {
+        List<User> users = userDao.getUsers();
+        return new ModelMap("usersList", users);
     }
 }
