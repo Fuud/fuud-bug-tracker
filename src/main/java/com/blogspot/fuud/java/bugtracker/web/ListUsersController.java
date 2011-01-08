@@ -2,24 +2,25 @@ package com.blogspot.fuud.java.bugtracker.web;
 
 import com.blogspot.fuud.java.bugtracker.dao.UserDao;
 import com.blogspot.fuud.java.bugtracker.domain.User;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ListUsersController extends AbstractController {
+@Controller
+public class ListUsersController {
     private UserDao userDao;
 
+    @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping("listUsers.do")
+    public ModelMap listUsers() {
         List<User> users = userDao.getUsers();
-        ModelAndView mv = new ModelAndView("/WEB-INF/pages/listUsers.jsp");
-        mv.addObject("usersList", users);
-        return mv;
+        return new ModelMap("usersList", users);
     }
 }

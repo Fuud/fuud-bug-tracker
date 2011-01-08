@@ -2,22 +2,24 @@ package com.blogspot.fuud.java.bugtracker.web;
 
 import com.blogspot.fuud.java.bugtracker.dao.UserDao;
 import com.blogspot.fuud.java.bugtracker.domain.User;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-public class AddUserController extends AbstractController {
+@Controller
+public class AddUserController {
     private UserDao userDao;
 
+    @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+    @RequestMapping("addUser.do")
+    public ModelMap addUser(@RequestParam(required = false) String username,
+                            @RequestParam(required = false) String password) {
 
         String message;
 
@@ -36,8 +38,6 @@ public class AddUserController extends AbstractController {
             }
         }
 
-        ModelAndView mv = new ModelAndView("/WEB-INF/pages/addUser.jsp");
-        mv.addObject("message", message);
-        return mv;
+        return new ModelMap("message", message);
     }
 }

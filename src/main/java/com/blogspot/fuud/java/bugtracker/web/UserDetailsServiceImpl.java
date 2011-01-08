@@ -2,18 +2,22 @@ package com.blogspot.fuud.java.bugtracker.web;
 
 import com.blogspot.fuud.java.bugtracker.dao.UserDao;
 import com.blogspot.fuud.java.bugtracker.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
 
+@Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDao userDao;
 
+    @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
