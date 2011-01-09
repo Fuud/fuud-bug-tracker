@@ -7,7 +7,7 @@
 
 <body>
 <menu:useMenuDisplayer name="TabbedMenuDisplayer" >
-    <menu:displayMenu name="AdminMenu"/>
+    <menu:displayMenu name="Users Operations"/>
 </menu:useMenuDisplayer>
 
 <h1>Create new user</h1>

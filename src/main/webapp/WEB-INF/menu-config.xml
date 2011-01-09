@@ -6,7 +6,7 @@
         <Displayer name="TabbedMenuDisplayer" type="net.sf.navigator.displayer.TabbedMenuDisplayer"/>
     </Displayers>
     <Menus>
-        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120">
+        <Menu name="Users Operations" title="Users Operations" description="Admin Menu" roles="ROLE_ADMIN" width="120">
             <Item name="Add user" title="Add user" page="/addUser.do"/>
             <Item name="List users" title="List users" page="/listUsers.do"/>
             <Item name="Logout" title="Logout" page="/j_spring_security_logout"/>

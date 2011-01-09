@@ -5,12 +5,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create new user</title>
+    <title>Users list</title>
 </head>
 
 <body>
 <menu:useMenuDisplayer name="TabbedMenuDisplayer">
-    <menu:displayMenu name="AdminMenu"/>
+    <menu:displayMenu name="Users Operations"/>
 </menu:useMenuDisplayer>
 
 <h1>Users list</h1>
