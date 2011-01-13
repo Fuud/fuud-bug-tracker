@@ -11,13 +11,11 @@ import java.lang.reflect.Method;
 
 public class DetachedCriteriaBuilder<T> {
     private DetachedCriteria detachedCriteria;
-    private Class<T> clazz;
     protected T object;
     private String propertyName;
     private Object expectedValue;
 
     public DetachedCriteriaBuilder(Class<T> clazz) throws IllegalAccessException, InstantiationException {
-        this.clazz = clazz;
         detachedCriteria = DetachedCriteria.forClass(clazz, "object");
         propertyName = "object";
 
