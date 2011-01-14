@@ -22,12 +22,31 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
         @Column
         private String title;
 
+        @OneToOne(cascade = CascadeType.ALL) // automatically save child
+        private TestClass child;
+
+        public Long getId() {
+            return id;
+        }
+
+        private void setId(Long id) {
+            this.id = id;
+        }
+
         public String getTitle() {
             return title;
         }
 
         public void setTitle(String title) {
             this.title = title;
+        }
+
+        public TestClass getChild() {
+            return child;
+        }
+
+        public void setChild(TestClass child) {
+            this.child = child;
         }
     }
 
@@ -37,18 +56,18 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
     }
 
     @Test
-    public void test() throws Exception {
+    public void oneWhereClause() throws Exception {
         final DetachedCriteria criteria =
                 new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
                     where(eq(object.getTitle(), "Lord Foo"));
                 }}.getCriteria();
 
 
-        save("Lord Foo");//1
-        save("Lord Foo");//2
-        save("Lord Car");
-        save("Lord Foo");//3
-        save("Lord Bar");
+        save("Lord Foo", "childTitle");//1
+        save("Lord Foo", "childTitle");//2
+        save("Lord Car", "childTitle");
+        save("Lord Foo", "childTitle");//3
+        save("Lord Bar", "childTitle");
 
         final List lordsFoo = (List<TestClass>) criteria.getExecutableCriteria(getSession()).list();
 
@@ -58,11 +77,69 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
         }
     }
 
-    private void save(String title) {
+    @Test
+    public void twoWhereClause() throws Exception {
+        final DetachedCriteria criteria =
+                new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
+                    where(
+                            or(
+                                    eq(object.getTitle(), "Lord Foo"),
+                                    eq(object.getTitle(), "Lord Bar")
+                            )
+                    );
+                }}.getCriteria();
+
+
+        save("Lord Foo", "childTitle");//1
+        save("Lord Foo", "childTitle");//2
+        save("Lord Car", "childTitle");
+        save("Lord Foo", "childTitle");//3
+        save("Lord Bar", "childTitle");//4
+
+        // only Foos and Bars, not Cars
+        final List<TestClass> lords = (List<TestClass>) criteria.getExecutableCriteria(getSession()).list();
+
+        assertEquals(4, lords.size());
+        assertEquals("Lord Foo", lords.get(0).getTitle());
+        assertEquals("Lord Foo", lords.get(1).getTitle());
+        assertEquals("Lord Foo", lords.get(2).getTitle());
+        assertEquals("Lord Bar", lords.get(3).getTitle());
+    }
+
+    @Test
+    public void oneDeepWhereClause() throws Exception {
+        final DetachedCriteria criteria =
+                new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
+                    where(
+                            eq(object.getChild().getTitle(), "Alice")
+                    );
+                }}.getCriteria();
+
+
+        save("Lord Foo", "Adriana");
+        save("Lord Foo", "Alberta");
+        save("Lord Car", "Alice");//1
+        save("Lord Foo", "Alice");//2
+        save("Lord Bar", "Alice");//3
+
+        final List lordsFoo = (List<TestClass>) criteria.getExecutableCriteria(getSession()).list();
+
+        assertEquals(3, lordsFoo.size());
+        for (TestClass testClass : (List<TestClass>) lordsFoo) {
+            assertEquals("Alice", testClass.getChild().getTitle());
+        }
+    }
+
+    private void save(String title, String childTitle) {
         final Session session = getSessionFactory().openSession();
         session.beginTransaction();
         final TestClass testClass = new TestClass();
         testClass.setTitle(title);
+        if (childTitle!=null){
+            final TestClass child = new TestClass();
+            child.setTitle(childTitle);
+            testClass.setChild(child);
+        }
         session.save(testClass);
         session.getTransaction().commit();
         session.close();
