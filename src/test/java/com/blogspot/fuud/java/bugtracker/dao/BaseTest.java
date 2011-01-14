@@ -20,25 +20,27 @@ public class BaseTest {
     }
 
     @Before
-	public void setUp() throws Exception {
-		// A SessionFactory is set up once for an application
-        final Configuration configuration = new Configuration();
-        sessionFactory = configuration
-                .configure() // configures settings from hibernate.cfg.xml
+    public void setUp() throws Exception {
+        // A SessionFactory is set up once for an application
+        sessionFactory = getConfiguration()
                 .buildSessionFactory();
         session = sessionFactory.openSession();
     }
 
-	@After
-	public  void tearDown() throws Exception {
-        if (session!=null){
-            try{
+    protected Configuration getConfiguration() {
+        return new Configuration().configure();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if (session != null) {
+            try {
                 session.close();
-            }catch (HibernateException ignore){
+            } catch (HibernateException ignore) {
             }
         }
-		if ( sessionFactory != null ) {
-			sessionFactory.close();
-		}
-	}
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
 }
