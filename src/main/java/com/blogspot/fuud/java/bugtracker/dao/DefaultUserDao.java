@@ -1,9 +1,9 @@
 package com.blogspot.fuud.java.bugtracker.dao;
 
 import com.blogspot.fuud.java.bugtracker.domain.User;
+import com.blogspot.fuud.java.experemental.hibernate.dsl.DetachedCriteriaBuilder;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,11 @@ public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
 
     @Override
     public User getUser(final String username) {
-        final DetachedCriteria criteria = DetachedCriteria.forClass(User.class).add(Restrictions.eq("login", username));
+
+        final DetachedCriteria criteria = new DetachedCriteriaBuilder<User>(User.class) {{
+            where(eq(object.getLogin(), username));
+        }}.getCriteria();
+
         final int maxResults = 1;
         final List users = getHibernateTemplate().findByCriteria(criteria, 0, maxResults);
         return users.size() == 0 ? null : (User) users.get(0);
