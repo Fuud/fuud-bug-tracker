@@ -21,11 +21,15 @@ public class DetachedCriteriaBuilder<T> {
     private List<String> propertyPath = new ArrayList<String>();
     private BiMap<String, String> aliases = HashBiMap.create();
 
-    public DetachedCriteriaBuilder(Class<T> clazz) throws IllegalAccessException, InstantiationException {
+    public DetachedCriteriaBuilder(Class<T> clazz) {
         clearPropertyName();
         detachedCriteria = DetachedCriteria.forClass(clazz, "object");
         aliases.put("object", "object");
-        object = getWrapperObject(clazz);
+        try {
+            object = getWrapperObject(clazz);
+        } catch (Exception e) {
+           throw new RuntimeException(e);
+        }
     }
 
     private T getWrapperObject(Class<?> clazz) throws InstantiationException, IllegalAccessException {
@@ -62,15 +66,6 @@ public class DetachedCriteriaBuilder<T> {
         return detachedCriteria;
     }
 
-    protected void where(Criterion criterion) {
-        detachedCriteria = detachedCriteria.add(criterion);
-    }
-
-    protected <V> Criterion eq(V objectValue, V expected) {
-        final String propertyName = createAliasesAndGetPropertyName();
-        clearPropertyName();
-        return Restrictions.eq(propertyName, expected);
-    }
 
     private String createAliasesAndGetPropertyName() {
         /*
@@ -93,7 +88,27 @@ public class DetachedCriteriaBuilder<T> {
         return propertyPath.get(propertyPath.size() - 2) + "." + propertyPath.get(propertyPath.size() - 1);
     }
 
+    protected void where(Criterion criterion) {
+        detachedCriteria = detachedCriteria.add(criterion);
+    }
+
+    protected <V> Criterion eq(V objectValue, V expected) {
+        final String propertyName = createAliasesAndGetPropertyName();
+        clearPropertyName();
+        return Restrictions.eq(propertyName, expected);
+    }
+
+    protected <V> Criterion ne(V objectValue, V expected) {
+        final String propertyName = createAliasesAndGetPropertyName();
+        clearPropertyName();
+        return Restrictions.ne(propertyName, expected);
+    }
+
     protected Criterion or(Criterion first, Criterion second) {
         return Restrictions.or(first, second);
+    }
+
+    protected Criterion and(Criterion first, Criterion second) {
+        return Restrictions.and(first, second);
     }
 }
