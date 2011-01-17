@@ -11,6 +11,7 @@
     <body>
         <menu:useMenuDisplayer name="TabbedMenuDisplayer" permissions="rolesAdapter">
             <menu:displayMenu name="Users Operations"/>
+            <menu:displayMenu name="Projects Operations"/>
         </menu:useMenuDisplayer>
 
         <sec:authorize access="isAnonymous()">

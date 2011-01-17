@@ -11,6 +11,7 @@
 <body>
 <menu:useMenuDisplayer name="TabbedMenuDisplayer">
     <menu:displayMenu name="Users Operations"/>
+    <menu:displayMenu name="Projects Operations"/>
 </menu:useMenuDisplayer>
 
 <h1>Users list</h1>

@@ -11,6 +11,9 @@
             <Item name="List users" title="List users" page="/listUsers.do"/>
             <Item name="Logout" title="Logout" page="/j_spring_security_logout"/>
         </Menu>
+        <Menu name="Projects Operations" title="Projects Operations" description="Admin Menu" roles="ROLE_ADMIN" width="120">
+            <Item name="Add project" title="Add project" page="/addProject.do"/>
+        </Menu>
         <Menu name="Logout" title="user.logout" page="/j_spring_security_logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
 </MenuConfig>
