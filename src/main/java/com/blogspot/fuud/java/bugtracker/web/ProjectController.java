@@ -22,7 +22,7 @@ public class ProjectController {
     }
 
     @RequestMapping("addProject.do")
-    public ModelMap addUser(@RequestParam(required = false) String title) {
+    public ModelMap addProject(@RequestParam(required = false) String title) {
 
         String message;
 
