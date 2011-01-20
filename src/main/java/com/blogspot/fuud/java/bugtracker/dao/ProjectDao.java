@@ -14,7 +14,7 @@ public class ProjectDao extends BaseGenericDao<Project> {
     }
 
     public Project getProject(final String title) {
-        final DetachedCriteria criteria = new DetachedCriteriaBuilder<Project>(Project.class) {{
+        final DetachedCriteria criteria = new DetachedCriteriaBuilder<Project>() {{
             where(eq(object.getTitle(), title));
         }}.getCriteria();
 

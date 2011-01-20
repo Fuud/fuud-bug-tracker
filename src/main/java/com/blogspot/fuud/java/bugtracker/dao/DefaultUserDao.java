@@ -40,7 +40,7 @@ public class DefaultUserDao extends HibernateDaoSupport implements UserDao {
     @Override
     public User getUser(final String username) {
 
-        final DetachedCriteria criteria = new DetachedCriteriaBuilder<User>(User.class) {{
+        final DetachedCriteria criteria = new DetachedCriteriaBuilder<User>() {{
             where(eq(object.getLogin(), username));
         }}.getCriteria();
 

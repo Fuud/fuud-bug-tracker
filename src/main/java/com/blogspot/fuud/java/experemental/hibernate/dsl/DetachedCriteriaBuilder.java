@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +22,22 @@ public class DetachedCriteriaBuilder<T> {
     private List<String> propertyPath = new ArrayList<String>();
     private BiMap<String, String> aliases = HashBiMap.create();
 
-    public DetachedCriteriaBuilder(Class<T> clazz) {
+    public DetachedCriteriaBuilder() {
         clearPropertyName();
+        Class clazz = getGenericType();
         detachedCriteria = DetachedCriteria.forClass(clazz, "object");
         aliases.put("object", "object");
         try {
             object = getWrapperObject(clazz);
         } catch (Exception e) {
-           throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
+    }
+
+    private Class getGenericType() {
+        Class actualClass = this.getClass();
+        ParameterizedType type = (ParameterizedType) actualClass.getGenericSuperclass();
+        return (Class) type.getActualTypeArguments()[0];
     }
 
     private T getWrapperObject(Class<?> clazz) throws InstantiationException, IllegalAccessException {

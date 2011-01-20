@@ -58,7 +58,7 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
     @Test
     public void oneWhereClause() throws Exception {
         final DetachedCriteria criteria =
-                new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
+                new DetachedCriteriaBuilder<TestClass>() {{
                     where(eq(object.getTitle(), "Lord Foo"));
                 }}.getCriteria();
 
@@ -80,7 +80,7 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
     @Test
     public void twoWhereClause() throws Exception {
         final DetachedCriteria criteria =
-                new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
+                new DetachedCriteriaBuilder<TestClass>() {{
                     where(
                             or(
                                     eq(object.getTitle(), "Lord Foo"),
@@ -109,7 +109,7 @@ public class DetachedCriteriaBuilderTest extends BaseTest {
     @Test
     public void oneDeepWhereClause() throws Exception {
         final DetachedCriteria criteria =
-                new DetachedCriteriaBuilder<TestClass>(TestClass.class) {{
+                new DetachedCriteriaBuilder<TestClass>() {{
                     where(
                             eq(object.getChild().getTitle(), "Alice")
                     );
