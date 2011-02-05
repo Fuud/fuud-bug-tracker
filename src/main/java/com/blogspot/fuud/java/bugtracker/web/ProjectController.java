@@ -21,7 +21,7 @@ public class ProjectController {
         this.projectDao = projectDao;
     }
 
-    @RequestMapping("addProject.do")
+    @RequestMapping("addProject")
     public ModelMap addProject(@RequestParam(required = false) String title) {
 
         String message;

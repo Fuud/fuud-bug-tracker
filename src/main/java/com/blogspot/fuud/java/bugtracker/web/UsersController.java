@@ -19,7 +19,7 @@ public class UsersController {
         this.userDao = userDao;
     }
 
-    @RequestMapping("addUser.do")
+    @RequestMapping("addUser")
     public ModelMap addUser(@RequestParam(required = false) String username,
                             @RequestParam(required = false) String password) {
 
@@ -43,7 +43,7 @@ public class UsersController {
         return new ModelMap("message", message);
     }
 
-    @RequestMapping("listUsers.do")
+    @RequestMapping("listUsers")
     public ModelMap listUsers() {
         List<User> users = userDao.getUsers();
         return new ModelMap("usersList", users);
